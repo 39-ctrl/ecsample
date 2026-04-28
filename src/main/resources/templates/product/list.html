@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8" />
-  <title>商品一覧</title>
+<meta charset="UTF-8" />
+<title>商品一覧</title>
 </head>
 <body>
-  <h1>商品一覧ページ</h1>
-
-  <ul>
-    <li>サンプル商品A</li>
-    <li>サンプル商品B</li>
-    <li>サンプル商品C</li>
-  </ul>
-
-  <a href="/">▶ トップページに戻る</a>
+<h1>商品一覧ページ</h1>
+<ul>
+<li th:each="product:${products}">
+<a th:href="'/product/' + ${product.id}">
+		     [[${product.name}]]（[[${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}]]円）
+</a>
+</li>
+</ul>
+<a href="/">▶ トップページに戻る</a>
 </body>
 </html>
