@@ -16,11 +16,11 @@ public class ProductController {
 	@GetMapping("/product")
 	public String showList(Model model) {
 		// 仮のデータをべた書き
-		List<Product> product = Arrays.asList(
+		List<Product> products = Arrays.asList(
 				new Product(1, "コーヒーカップ", 1200),
 				new Product(2, "ティーポット", 2400),
 				new Product(3, "マグカップ", 1500));
-		model.addAttribute("product", product);
+		model.addAttribute("products", products);
 		// 商品一覧ページを表示する
 		return "product/list";
 	}
