@@ -11,9 +11,24 @@
   <h1>ユーザ登録フォーム</h1>
 
   <form th:action="@{/register}" th:object="${form}" method="post">
-    <p>名前：<input type="text" th:field="*{name}" /></p>
-    <p>メールアドレス：<input type="email" th:field="*{email}" /></p>
-    <p>パスワード：<input type="password" th:field="*{password}" /></p>
+	<p>
+	  名前：<input type="text" th:field="*{name}" />
+	        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+	</p>
+	<p>
+	  メールアドレス：<input type="email" th:field="*{email}" />
+	        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+	</p>
+	<p>
+	   メールアドレス（確認用）：<input type="email" th:field="*{emailConfirm}" />
+	   <span th:if="${#fields.hasErrors('emailConfirm')}" th:errors="*{emailConfirm}"></span>
+	 </p>
+
+	 <p th:if="${#fields.hasErrors('emailConfirmed')}" th:errors="*{emailConfirmed}"></p>
+	<p>
+	  パスワード：<input type="password" th:field="*{password}" />
+	        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+	</p>
     <p><button type="submit">登録</button></p>
   </form>
 
