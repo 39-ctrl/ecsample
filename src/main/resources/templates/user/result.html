@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>登録結果</title>
+</head>
+<body>
+  <header th:replace="layout/_header :: header"></header>
+
+  <main>
+  <h1>登録結果</h1>
+  <ul>
+	<li>名前：[[${form.name}]]</li>
+	<li>メール：[[${form.email}]]</li>
+	<li>パスワード：[[${form.password}]]</li>
+  </ul>
+  <a href="/register">▶ 戻る</a>
+  </main>
+
+  <footer th:replace="layout/_footer :: footer"></footer>
+</body>
+</html>

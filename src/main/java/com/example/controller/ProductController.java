@@ -14,7 +14,7 @@ import com.example.entity.Product;
 public class ProductController {
 
 	@GetMapping("/product")
-	public String showList(Model model) {
+	public String showList(Model model) {//Controllerからviewを渡すためのモデル
 		// 仮のデータをべた書き
 		List<Product> products = Arrays.asList(
 				new Product(1, "コーヒーカップ", 1200),
