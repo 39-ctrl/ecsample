@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>カート</title>
+</head>
+<body>
+  <header th:replace="layout/_header :: header"></header>
+
+  <main>
+  <h1>カート</h1>
+
+  <th:block th:if="${#lists.isEmpty(cart)}">
+    <p>カートに商品が入っていません。</p>
+  </th:block>
+
+  <th:block th:unless="${#lists.isEmpty(cart)}">
+    <table>
+      <tr>
+        <th>商品名</th>
+        <th>単価</th>
+        <th>数量</th>
+        <th>小計</th>
+        <th>操作</th>
+      </tr>
+      <tr th:each="item : ${cart}">
+        <td>[[${item.name}]]</td>
+        <td>[[${#numbers.formatDecimal(item.price, 0, 'COMMA', 0, 'POINT')}]]円</td>
+        <td>[[${item.quantity}]]</td>
+        <td>[[${#numbers.formatDecimal(item.subtotal, 0, 'COMMA', 0, 'POINT')}]]円</td>
+        <td>
+          <form th:action="@{/cart/remove}" method="post">
+            <input type="hidden" name="productId" th:value="${item.productId}" />
+            <button type="submit">削除</button>
+          </form>
+        </td>
+      </tr>
+    </table>
+
+    <p><strong>合計：[[${#numbers.formatDecimal(total, 0, 'COMMA', 0, 'POINT')}]]円</strong></p>
+  </th:block>
+
+  <a href="/product">▶ 商品一覧に戻る</a>
+  </main>
+
+  <footer th:replace="layout/_footer :: footer"></footer>
+</body>
+</html>

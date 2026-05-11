@@ -16,6 +16,10 @@
     <a th:href="'/product/' + ${product.id}">
      [[${product.name}]]（[[${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}]]円）
     </a>
+	<form th:action="@{/cart/add}" method="post" style="display:inline">
+	     <input type="hidden" name="productId" th:value="${product.id}" />
+	     <button type="submit">カートに追加</button>
+	   </form>
    </li>
   </ul>
 
