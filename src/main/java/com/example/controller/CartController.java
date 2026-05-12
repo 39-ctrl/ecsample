@@ -32,7 +32,11 @@ public class CartController {
 	@GetMapping
 	public String showCart(HttpSession session, Model model) {
 		List<CartItem> cart = cartService.getCart(session);
-		int total = cart.stream().mapToInt(CartItem::getSubtotal).sum();
+		//カートの合計金額
+		int total = 0;
+		for (CartItem item : cart) {
+			total += item.getSubtotal();
+		}
 		model.addAttribute("cart", cart);
 		model.addAttribute("total", total);
 		return "cart/index";

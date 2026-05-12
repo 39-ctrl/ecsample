@@ -4,6 +4,15 @@
     <a href="/">トップ</a> |
     <a href="/product">商品一覧</a> |
     <a href="/cart">カート</a>
+	<th:block th:if="${session.loginUser != null}">
+	      [[${session.loginUser.name}]]さん |
+	      <form th:action="@{/logout}" method="post" style="display:inline">
+	        <button type="submit">ログアウト</button>
+	      </form>
+	    </th:block>
+	    <th:block th:unless="${session.loginUser != null}">
+	      <a href="/login">ログイン</a>
+	    </th:block>
   </nav>
   <hr />
 </header>
